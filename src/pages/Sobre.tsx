@@ -83,14 +83,14 @@ export default function Sobre() {
 
           <div className="hidden md:block w-[1px] h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
           
-          <a href="https://wa.me/5584988126175" target="_blank" rel="noreferrer" className="flex items-center gap-5 sm:gap-6 group hover:scale-[1.02] transition-transform w-full md:w-auto">
+          <a href="https://wa.me/5584921683473" target="_blank" rel="noreferrer" className="flex items-center gap-5 sm:gap-6 group hover:scale-[1.02] transition-transform w-full md:w-auto">
             <div className="bg-gradient-to-br from-sunex-gold/20 to-sunex-accent/10 p-4 sm:p-5 rounded-3xl border border-sunex-gold/20 shadow-[0_5px_20px_rgba(255,195,0,0.1)] group-hover:border-sunex-gold/40 transition-colors shrink-0">
               <Smartphone className="w-7 h-7 sm:w-8 sm:h-8 text-sunex-gold" />
             </div>
             <div className="flex-1 text-left">
               <p className="text-[10px] sm:text-[11px] text-[#888] uppercase tracking-[3px] mb-1 font-black">WhatsApp</p>
               <span className="text-white font-bold transition-colors text-lg sm:text-xl break-all">
-                (84) 98812-6175
+                (84) 92168-3473
               </span>
             </div>
           </a>
