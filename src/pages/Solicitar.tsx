@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { criarPedido } from '../lib/pedidos';
+import { notificarNovoPedido } from '../lib/emailService';
 import { generateId } from '../lib/utils';
 import { analytics } from '../lib/firebase';
 import { logEvent } from 'firebase/analytics';
@@ -101,6 +102,15 @@ export default function Solicitar() {
       };
 
       await criarPedido(payload);
+      
+      // Notificação EmailJS (em segundo plano, com tratamento resiliente contra falhas)
+      try {
+        notificarNovoPedido(payload).catch(err => {
+          console.error("Erro assíncrono ao gerar notificação de novo pedido no EmailJS:", err);
+        });
+      } catch (emailErr) {
+        console.error("Erro síncrono ao disparar notificação EmailJS:", emailErr);
+      }
       
       // Log Analytics Event
       analytics.then(a => {
@@ -344,12 +354,12 @@ export default function Solicitar() {
 
                 {/* Forma de pagamento */}
                 <div>
-                  <label className="input-label mb-3">Método de Liquidação</label>
+                  <label className="input-label mb-3">Método de pagamento</label>
                   <div className="grid grid-cols-2 gap-4">
                     <label className="relative flex cursor-pointer rounded-xl border border-white/5 bg-black/25 p-4 transition-all hover:bg-white/[0.02]">
                       <input type="radio" name="pagamento" value="pix" onChange={handleInputChange} checked={formData.pagamento === 'pix'} className="peer sr-only" />
                       <div className="flex flex-col w-full text-center">
-                        <span className="font-black text-sunex-muted text-xs peer-checked:text-sunex-gold uppercase tracking-widest transition-colors">PIX Desconto</span>
+                        <span className="font-black text-sunex-muted text-xs peer-checked:text-sunex-gold uppercase tracking-widest transition-colors">PIX</span>
                       </div>
                       <div className="absolute inset-0 rounded-xl border-2 border-transparent peer-checked:border-sunex-accent pointer-events-none transition-colors shadow-[0_0_15px_rgba(255,122,0,0)] peer-checked:shadow-[0_0_15px_rgba(255,122,0,0.15)]"></div>
                     </label>

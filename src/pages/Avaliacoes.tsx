@@ -107,8 +107,8 @@ export default function Avaliacoes() {
   return (
     <div className="flex-1 w-full relative">
       {/* Background Decorators */}
-      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-sunex-gold/5 rounded-full blur-[120px] -z-10 pointer-events-none opacity-40 mix-blend-screen" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-sunex-accent/5 rounded-full blur-[150px] -z-10 pointer-events-none opacity-30 mix-blend-screen" />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] -z-10 pointer-events-none opacity-40 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle, rgba(255, 195, 0, 0.05) 0%, rgba(255, 195, 0, 0) 70%)' }} />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] -z-10 pointer-events-none opacity-30 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle, rgba(255, 122, 0, 0.05) 0%, rgba(255, 122, 0, 0) 70%)' }} />
 
       {/* Main Container */}
       <div className="max-w-[1300px] mx-auto px-6 py-16">

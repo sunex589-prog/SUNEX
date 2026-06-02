@@ -55,7 +55,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="h-[80px] border-b border-white/5 bg-black/50 backdrop-blur-2xl sticky top-0 z-40 flex items-center px-6 lg:px-16 justify-between shrink-0 shadow-lg shadow-black/20">
+      <nav className="h-[80px] border-b border-white/5 bg-black/80 backdrop-blur-md sticky top-0 z-40 flex items-center px-6 lg:px-16 justify-between shrink-0 shadow-lg shadow-black/20">
         <Link to="/admin" className="text-xl lg:text-2xl font-black tracking-[3px] text-transparent bg-clip-text bg-gradient-to-r from-sunex-gold to-sunex-accent flex items-center gap-3 drop-shadow-sm hover:scale-105 transition-transform origin-left">
           <Sun className="h-6 w-6 lg:h-7 lg:w-7 text-sunex-accent" /> SUNEX
         </Link>

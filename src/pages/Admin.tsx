@@ -412,7 +412,7 @@ export default function Admin() {
                                   <Eye className="w-3.5 h-3.5" />
                                 </button>
                                 <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 z-50 opacity-0 invisible group-hover/preview:opacity-100 group-hover/preview:visible transition-all duration-200 pointer-events-none">
-                                  <div className="bg-[#111111] p-3 rounded-xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+                                  <div className="bg-[#111111] p-3 rounded-xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.9)]">
                                     <div className="w-[180px] h-[220px] bg-black/60 rounded overflow-hidden flex items-center justify-center">
                                       <img src={pedido.comprovanteUrl} alt="Comprovante" className="max-w-full max-h-full object-contain" />
                                     </div>
@@ -437,7 +437,7 @@ export default function Admin() {
                                   <Eye className="w-3.5 h-3.5" />
                                 </button>
                                 <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 z-50 opacity-0 invisible group-hover/preview:opacity-100 group-hover/preview:visible transition-all duration-200 pointer-events-none">
-                                  <div className="bg-[#111111] p-3 rounded-xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+                                  <div className="bg-[#111111] p-3 rounded-xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.9)]">
                                     <div className="w-[180px] h-[220px] bg-black/60 rounded overflow-hidden flex items-center justify-center">
                                       <img src={pedido.imagemAdminUrl} alt="Relatório Técnico" className="max-w-full max-h-full object-contain" />
                                     </div>

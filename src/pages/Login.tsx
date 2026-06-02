@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, AlertCircle, Sun, User, Key } from 'lucide-react';
 import { auth } from '../lib/firebase';
-import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -19,12 +19,34 @@ export default function Login() {
     const adminUsername = 'SUNEX';
     const adminEmail = 'admin@sunex.com.br';
     
-    if (username.toLowerCase() === adminUsername.toLowerCase()) {
+    if (username.toUpperCase() === adminUsername.toUpperCase()) {
       try {
+        // Try logging of the official Firebase administration account
         await signInWithEmailAndPassword(auth, adminEmail, password);
         sessionStorage.setItem('sunex_admin_auth', 'true');
         navigate('/admin');
       } catch (err: any) {
+        console.warn("Attempting on-demand admin account registration/verification...", err);
+        
+        // If the user does not exist in Firebase Auth yet, and they entered the correct password, create it!
+        if ((err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') && password === 'sunex2026') {
+          try {
+            await createUserWithEmailAndPassword(auth, adminEmail, password);
+            sessionStorage.setItem('sunex_admin_auth', 'true');
+            navigate('/admin');
+            setLoading(false);
+            return;
+          } catch (signUpErr: any) {
+            console.error("Erro ao criar usuário administrador no Firebase:", signUpErr);
+            if (signUpErr.code === 'auth/operation-not-allowed') {
+              setError('O login ou registro por E-mail/Senha está desativado no Firebase Console. Ative o método E-mail/Senha em Authentication.');
+              setLoading(false);
+              return;
+            }
+          }
+        }
+        
+        // Handle normal errors
         console.error("Erro no login Firebase:", err);
         if (err.code === 'auth/unauthorized-domain') {
           setError('Domínio não autorizado. Adicione os domínios da Cloud Run na seção "Authentication > Settings > Authorized domains" do seu Firebase Console.');

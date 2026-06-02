@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <div className="flex-1 flex flex-col relative z-10 w-full">
       {/* Background Decorators */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-sunex-accent/5 rounded-full blur-[150px] -z-10 pointer-events-none opacity-40 mix-blend-screen" />
-      <div className="absolute top-[800px] right-1/4 w-[500px] h-[500px] bg-sunex-gold/5 rounded-full blur-[150px] -z-10 pointer-events-none opacity-30 mix-blend-screen" />
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] -z-10 pointer-events-none opacity-40 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle, rgba(255, 122, 0, 0.05) 0%, rgba(255, 122, 0, 0) 70%)' }} />
+      <div className="absolute top-[800px] right-1/4 w-[500px] h-[500px] -z-10 pointer-events-none opacity-30 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle, rgba(255, 195, 0, 0.05) 0%, rgba(255, 195, 0, 0) 70%)' }} />
 
       {/* Main Hero & Description Section */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] w-full max-w-[1600px] mx-auto border-b border-white/5">
