@@ -44,8 +44,8 @@ export default function Acompanhar() {
   const [chaveCopiada, setChaveCopiada] = useState(false);
   const [viewImage, setViewImage] = useState<string | null>(null);
 
-  // Chave PIX aleatória para testes
-  const CHAVE_PIX = "e2d8b74c-8a9d-4c3d-b2a1-ff3d8b2a9e1c";
+  // Chave PIX oficial SUNEX
+  const CHAVE_PIX = "sunex589@gmail.com";
 
   const getValorTotal = () => {
     if (!pedido) return 0;
@@ -53,9 +53,9 @@ export default function Acompanhar() {
   };
 
   const getPixPayload = () => {
-    // Generates a mock BR Code for testing purposes
+    // Generates a mock BR Code with the email PIX key
     const valorFloat = getValorTotal().toFixed(2);
-    return `00020126580014br.gov.bcb.pix0136${CHAVE_PIX}5204000053039865405${valorFloat}5802BR5905SUNEX6008BRASILIA62070503***6304XXXX`;
+    return `00020126400014br.gov.bcb.pix0118${CHAVE_PIX}5204000053039865405${valorFloat}5802BR5905SUNEX6008BRASILIA62070503***6304`;
   };
 
   const copiarChave = () => {
@@ -242,7 +242,7 @@ export default function Acompanhar() {
                     </div>
                     
                     <p className="text-[#bbb] text-sm mb-4 leading-relaxed tracking-wide">
-                      Escaneie o QR Code acima ou copie a chave aleatória de teste abaixo para realizar o pagamento.
+                      Escaneie o QR Code acima ou copie a chave PIX de e-mail abaixo para realizar o pagamento oficial.
                     </p>
 
                     <div className="flex items-center bg-black/40 border border-white/10 rounded-lg p-1 mb-5">

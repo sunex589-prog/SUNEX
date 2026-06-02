@@ -1,31 +1,31 @@
 import React, { useState, useMemo } from 'react';
-import { Calculator, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Calculator, ArrowRight, Check, Sparkles, TrendingUp, ShieldAlert, Award, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const PLANOS = {
   Essencial: {
     preco: 18.0,
-    descricao: "👉 Ideal para quem quer manter o sistema funcionando bem",
-    inclui: ["✔️ 1 limpeza completa"]
+    descricao: "Ideal para quem quer manter o sistema funcionando bem com foco em custo-benefício.",
+    inclui: ["Uma limpeza completa"]
   },
   Performance: {
     preco: 15.0,
-    descricao: "👉 O plano mais equilibrado e mais vendido\nDuração: 4 meses",
+    descricao: "O plano mais equilibrado e mais vendido para usinas ou residências de alta performance.",
     inclui: [
-      "✔️ 1 limpeza completa (a cada 2 meses)",
-      "✔️ Inspeção técnica",
-      "✔️ 1 inspeção elétrica preventiva inclusa"
+      "Uma limpeza completa",
+      "Inspeção técnica detalhada dos painéis",
+      "Inspeção elétrica preventiva estrutural"
     ]
   },
   Elite: {
     preco: 13.0,
-    descricao: "👉 Para quem quer máxima eficiência e segurança\nDuração: 6 meses",
+    descricao: "O máximo cuidado e acompanhamento constante para geração ininterrupta de grande porte.",
     inclui: [
-      "✔️ 1 limpeza profissional por mês",
-      "✔️ Avaliação técnica",
-      "✔️ Monitoramento",
-      "✔️ Análise de possíveis perdas de eficiência",
-      "✔️ Relatório técnico simplificado"
+      "Limpeza profissional mensal programada",
+      "Avaliação técnica termográfica",
+      "Monitoramento ativo de perdas térmicas",
+      "Análise aprofundada de perdas de eficiência",
+      "Relatório técnico simplificado mensal"
     ]
   }
 };
@@ -50,100 +50,238 @@ export default function Simulacao() {
       setPlacas('');
     } else {
       const num = parseInt(value, 10);
-      if (!isNaN(num) && num >= 0) {
+      if (!num || isNaN(num)) {
+        setPlacas('');
+      } else if (num >= 0) {
         setPlacas(num);
       }
     }
   };
 
   return (
-    <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-16 flex flex-col items-center justify-center relative z-10">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sunex-accent/10 rounded-full blur-[150px] -z-10 pointer-events-none opacity-50 mix-blend-screen" />
+    <div className="flex-1 w-full relative">
+      {/* Background Decorators */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-sunex-accent/5 rounded-full blur-[150px] -z-10 pointer-events-none opacity-40 mix-blend-screen" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-sunex-gold/5 rounded-full blur-[150px] -z-10 pointer-events-none opacity-30 mix-blend-screen" />
 
-      <div className="text-center mb-12 animate-in slide-in-from-bottom-4 duration-500">
-        <div className="mx-auto bg-gradient-to-br from-sunex-gold/20 to-sunex-accent/10 border border-sunex-gold/20 text-sunex-gold p-4 rounded-3xl inline-flex mb-8 shadow-[0_0_30px_rgba(255,195,0,0.15)] relative">
-          <Calculator className="h-8 w-8 relative z-10" />
+      {/* Main Container */}
+      <div className="max-w-[1300px] mx-auto px-6 py-16">
+        
+        {/* Header Section */}
+        <div className="text-center mb-16 animate-in fade-in duration-700">
+          <div className="inline-flex items-center gap-2 mb-3 text-xs font-black tracking-[4px] uppercase text-sunex-accent bg-sunex-accent/10 border border-sunex-accent/25 px-4 py-1.5 rounded-full">
+            <Calculator className="w-3.5 h-3.5 animate-pulse" /> Simulador de Investimento
+          </div>
+          <h1 className="text-3xl md:text-5xl font-extrabold uppercase text-white tracking-tight mb-4 mt-2">
+            Simulador de <span className="text-transparent bg-clip-text bg-gradient-to-r from-sunex-gold to-sunex-accent">Investimento</span>
+          </h1>
+          <p className="text-sunex-muted text-md max-w-2xl mx-auto font-medium">
+            Calcule o valor do serviço em tempo real e entenda o custo sob demanda para a sua usina fotovoltaica.
+          </p>
         </div>
-        <h1 className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight mb-4">Simule seu Investimento</h1>
-        <p className="text-[#888] font-medium max-w-md mx-auto text-lg leading-relaxed">
-          Descubra o valor para a limpeza das suas placas solares em tempo real.
-        </p>
+
+        {/* Responsive Grid Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 md:gap-12 items-stretch animate-in fade-in duration-900">
+          
+          {/* LEFT COLUMN: The Calculator Widget */}
+          <div className="glass-panel p-8 md:p-10 border-t border-t-white/10 bg-sunex-card flex flex-col justify-between">
+            <div className="space-y-8">
+              
+              {/* Form Input: Placas */}
+              <div className="group">
+                <label className="input-label mb-3 text-xs font-bold uppercase tracking-widest text-sunex-muted group-focus-within:text-white transition-colors flex items-center gap-2">
+                  <span>Quantidade de Placas Solares</span>
+                  <span className="text-sunex-accent font-bold">*</span>
+                </label>
+                <div className="relative">
+                  <input 
+                    type="number" 
+                    min="1"
+                    value={placas}
+                    onChange={handlePlacasChange}
+                    className="input-field text-2xl font-black text-center font-mono py-5 border border-white/10 hover:border-white/20 bg-black/40 focus:border-sunex-accent text-white"
+                    placeholder="Ex: 12"
+                  />
+                  <div className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-bold text-sunex-muted uppercase tracking-widest pointer-events-none">
+                    Unidades
+                  </div>
+                </div>
+              </div>
+
+              {/* Plano Selector Radios */}
+              <div>
+                <label className="input-label mb-4 text-xs font-bold uppercase tracking-widest text-sunex-muted block">
+                  Escolha a modalidade de serviço:
+                </label>
+                
+                <div className="space-y-4">
+                  {(Object.keys(PLANOS) as Array<keyof typeof PLANOS>).map((key) => {
+                    const isSelected = plano === key;
+                    const item = PLANOS[key];
+                    return (
+                      <label 
+                        key={key}
+                        className={`relative flex flex-col cursor-pointer rounded-xl border p-5 transition-all duration-300 ${
+                          isSelected 
+                            ? 'border-sunex-accent bg-sunex-accent/5 shadow-[0_5px_30px_rgba(255,122,0,0.15)]'
+                            : 'border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/10'
+                        }`}
+                      >
+                        <input 
+                          type="radio" 
+                          name="plano_simulador" 
+                          value={key} 
+                          checked={isSelected}
+                          onChange={(e) => setPlano(e.target.value as keyof typeof PLANOS)}
+                          className="sr-only" 
+                        />
+                        
+                        <div className="flex items-center justify-between w-full">
+                          <div className="flex items-center gap-3">
+                            <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${isSelected ? 'border-sunex-accent' : 'border-white/20'}`}>
+                              {isSelected && <div className="w-2 h-2 rounded-full bg-sunex-accent" />}
+                            </div>
+                            <span className={`font-extrabold text-md uppercase tracking-wider ${isSelected ? 'text-sunex-gold' : 'text-white'}`}>
+                              {key}
+                            </span>
+                            {key === 'Performance' && (
+                              <span className="text-[9px] bg-sunex-accent/15 text-sunex-gold px-2.5 py-0.5 rounded-full uppercase tracking-widest font-black border border-sunex-accent/20 animate-pulse">
+                                Plano Mais Vendido
+                              </span>
+                            )}
+                          </div>
+                          
+                          <span className={`font-mono font-black text-md ${isSelected ? 'text-sunex-accent' : 'text-sunex-muted'}`}>
+                            R$ {item.preco.toFixed(2).replace('.', ',')} <span className="text-[10px] uppercase font-sans tracking-widest font-bold">/ placa</span>
+                          </span>
+                        </div>
+
+                        {/* Extra features reveal drawer on checked */}
+                        {isSelected && (
+                          <div className="mt-4 pt-4 border-t border-white/5 animate-in fade-in duration-300">
+                            <p className="text-sunex-muted text-xs leading-relaxed mb-4 font-semibold">
+                              {item.descricao}
+                            </p>
+                            
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                              {item.inclui.map((inc, index) => (
+                                <div key={index} className="flex items-start gap-2 text-xs font-semibold text-white">
+                                  <Check className="w-4 h-4 text-sunex-accent shrink-0 mt-0.5" />
+                                  <span>{inc}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+
+            </div>
+
+            {/* Price Result Banner */}
+            <div className="pt-8 border-t border-white/5 mt-8 text-center bg-black/40 p-8 rounded-xl border border-white/5">
+              <span className="text-sunex-muted text-xs uppercase tracking-widest font-black mb-2 block">
+                Valor Total Estimado
+              </span>
+              <div className="text-4xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-sunex-gold to-sunex-accent mb-6 font-mono">
+                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calcularValor)}
+              </div>
+              
+              <Link to={`/solicitar?plano=${plano.toLowerCase()}&placas=${placas || ''}`} className="btn-primary flex items-center justify-center gap-2 group w-full py-4 text-sm font-black shadow-lg">
+                Agendar com {plano} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: Benefícios Side Card */}
+          <div className="glass-panel p-8 md:p-10 border-t border-t-white/10 bg-sunex-card flex flex-col justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-4 text-[10px] font-black tracking-[3px] uppercase text-[#FFC300] bg-sunex-gold/5 px-3 py-1 rounded-full border border-sunex-gold/20">
+                <Sparkles className="w-3 h-3" /> Benefícios Reais
+              </div>
+              <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-widest mb-6">
+                Por que Limpeza Profissional?
+              </h2>
+              <p className="text-sunex-muted text-sm leading-relaxed mb-8 font-medium">
+                Limpar painéis solares não é equivalente a lavar vidros comuns. O acúmulo de poeira química, fezes de pássaros e fuligem industrial cria opacidade que reduz dramaticamente a entrada de luz e danifica as células fotoelétricas em longo prazo.
+              </p>
+
+              {/* Bullet List Section */}
+              <div className="space-y-6">
+                
+                {/* Bullet 1 */}
+                <div className="flex gap-4 group">
+                  <div className="shrink-0 bg-sunex-accent/10 border border-sunex-accent/20 p-2.5 rounded-lg text-sunex-accent group-hover:bg-sunex-accent group-hover:text-white transition-all">
+                    <TrendingUp className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-white text-xs uppercase tracking-wider mb-1">Mais Geração</h4>
+                    <p className="text-xs text-sunex-muted leading-relaxed font-semibold">
+                      Garante aumento imediato de até 30% na performance de captação de fótons após a execução técnica.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bullet 2 */}
+                <div className="flex gap-4 group">
+                  <div className="shrink-0 bg-sunex-accent/10 border border-sunex-accent/20 p-2.5 rounded-lg text-sunex-accent group-hover:bg-sunex-accent group-hover:text-white transition-all">
+                    <ShieldAlert className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-white text-xs uppercase tracking-wider mb-1">Menos Perdas</h4>
+                    <p className="text-xs text-sunex-muted leading-relaxed font-semibold">
+                      Previne a formação de focos de curto-circuito térmico (hotspots) que geram pontos de fadiga extrema na placa.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bullet 3 */}
+                <div className="flex gap-4 group">
+                  <div className="shrink-0 bg-sunex-accent/10 border border-sunex-accent/20 p-2.5 rounded-lg text-sunex-accent group-hover:bg-sunex-accent group-hover:text-white transition-all">
+                    <Clock className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-white text-xs uppercase tracking-wider mb-1">Maior Vida Útil</h4>
+                    <p className="text-xs text-sunex-muted leading-relaxed font-semibold">
+                      Preserva as características técnicas protetoras do vidro temperado e as ligas metálicas autolubrificantes.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bullet 4 */}
+                <div className="flex gap-4 group">
+                  <div className="shrink-0 bg-sunex-accent/10 border border-sunex-accent/20 p-2.5 rounded-lg text-sunex-accent group-hover:bg-sunex-accent group-hover:text-white transition-all">
+                    <Award className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-white text-xs uppercase tracking-wider mb-1">Maior Segurança</h4>
+                    <p className="text-xs text-sunex-muted leading-relaxed font-semibold">
+                      Serviço executado com profissionais qualificados, equipamentos de escalada e água totalmente desmineralizada purificada.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Side-Card Info Slogan */}
+            <div className="mt-8 pt-6 border-t border-white/5 bg-white/[0.01] p-4 rounded-xl border border-white/5">
+              <p className="text-[10px] text-center font-bold uppercase tracking-widest text-sunex-gold leading-normal">
+                Recupere a rentabilidade do seu sistema de forma limpa, segura e ecológica.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div className="glass-panel p-10 w-full max-w-lg animate-in zoom-in-95 duration-500 shadow-2xl shadow-black/50 border border-white/10">
-        <div className="space-y-8">
-          <div className="group">
-            <label className="input-label mb-2 text-[#888] font-bold text-xs uppercase tracking-widest group-focus-within:text-white transition-colors block">Quantidade de Placas</label>
-            <input 
-              type="number" 
-              min="1"
-              value={placas}
-              onChange={handlePlacasChange}
-              className="input-field text-xl font-black text-center font-mono py-4"
-              placeholder="Ex: 10"
-            />
-          </div>
-
-          <div>
-            <label className="input-label mb-4 text-[#888] font-bold text-xs uppercase tracking-widest block">Selecione o Plano</label>
-            <div className="space-y-4">
-              {(Object.keys(PLANOS) as Array<keyof typeof PLANOS>).map((key) => (
-                <label 
-                  key={key}
-                  className={`relative flex flex-col cursor-pointer rounded-2xl border p-5 transition-all duration-300 ${
-                    plano === key 
-                      ? 'border-sunex-accent bg-sunex-accent/10 shadow-[0_5px_30px_rgba(255,122,0,0.15)]'
-                      : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.04]'
-                  }`}
-                >
-                  <input 
-                    type="radio" 
-                    name="plano" 
-                    value={key} 
-                    checked={plano === key}
-                    onChange={(e) => setPlano(e.target.value as keyof typeof PLANOS)}
-                    className="sr-only" 
-                  />
-                  
-                  <div className="flex items-center justify-between w-full mb-1">
-                    <span className={`font-black text-lg ${plano === key ? 'text-sunex-gold' : 'text-white'}`}>
-                      {key} {key === 'Performance' && <span className="ml-2 text-[10px] bg-sunex-gold/20 text-sunex-gold px-2 py-0.5 rounded-full uppercase tracking-widest font-bold border border-sunex-gold/30">Recomendado</span>}
-                    </span>
-                    <span className={`font-mono font-bold ${plano === key ? 'text-sunex-accent' : 'text-[#888]'}`}>
-                      R$ {PLANOS[key].preco.toFixed(2).replace('.', ',')} <span className="text-[10px] uppercase font-sans tracking-wide">/ placa</span>
-                    </span>
-                  </div>
-
-                  {plano === key && (
-                    <div className="mt-4 pt-4 border-t border-white/10 animate-in fade-in duration-300">
-                      <p className="text-white text-sm font-medium mb-4 leading-relaxed">{PLANOS[key].descricao}</p>
-                      
-                      <div className="space-y-2">
-                        {PLANOS[key].inclui.map((item, idx) => (
-                          <div key={idx} className="flex items-start gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                            <span className="text-[#bbb] text-sm font-medium">{item.substring(item.indexOf(' ') + 1)}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </label>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-8 border-t border-white/10 mt-8 text-center bg-gradient-to-b from-transparent to-black/30 -mx-10 -mb-10 p-10 rounded-b-[30px]">
-            <span className="text-[#888] text-xs uppercase tracking-widest font-black mb-2 block">Investimento Estimado</span>
-            <div className="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-sunex-gold to-sunex-accent mb-8">
-              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calcularValor)}
-            </div>
-            
-            <Link to="/solicitar" className="btn-primary flex items-center justify-center gap-2 group w-full py-5 text-base">
-              Solicitar Serviço Agora <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
+      {/* Footer */}
+      <div className="bg-black/30 border-t border-white/5 py-12 text-center text-xs font-bold tracking-widest text-sunex-muted w-full">
+        SUNEX - SOFTWARE DE SIMULAÇÃO TÉCNICA ENERGÉTICA &copy; {new Date().getFullYear()}
       </div>
     </div>
   );

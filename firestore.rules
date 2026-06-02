@@ -1,110 +1,28 @@
 rules_version = '2';
+
 service cloud.firestore {
+
   match /databases/{database}/documents {
-    // ---------------------------------------------------------
-    // 1. GLOBAL SAFETY NET & HELPERS
-    // ---------------------------------------------------------
-    match /{document=**} {
-      allow read, write: if false;
-    }
 
-    function isSignedIn() {
-      return request.auth != null;
-    }
-
-    function isAdmin() {
-      return isSignedIn() && (
-        (request.auth.token.email == 'sunex589@gmail.com' && request.auth.token.email_verified == true) ||
-        (request.auth.token.email == 'admin@sunex.com.br')
-      );
-    }
-
-    function isValidId(id) {
-      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
-    }
-
-    function incoming() {
-      return request.resource.data;
-    }
-
-    function existing() {
-      return resource.data;
-    }
-
-    // ---------------------------------------------------------
-    // 2. PEDIDOS (ORDERS)
-    // ---------------------------------------------------------
     match /pedidos/{pedidoId} {
-      
-      // isValidPedido handles basic schema and type safety
-      function isValidPedido(data) {
-        return data.keys().hasAll(['id', 'nome', 'email', 'telefone', 'endereco', 'placas', 'servico', 'pagamento', 'status', 'data', 'createdAt'])
-          && data.id is string && data.id.size() <= 20
-          && data.nome is string && data.nome.size() <= 100
-          && data.email is string && data.email.size() <= 100
-          && data.telefone is string && data.telefone.size() <= 30
-          && data.endereco is string && data.endereco.size() <= 500
-          && data.placas is number && data.placas >= 0
-          && data.servico in ['Essencial', 'Performance', 'Elite']
-          && data.pagamento in ['pix', 'local']
-          && data.status in ['aguardando_pagamento', 'pagamento_enviado', 'confirmado', 'agendado', 'em_execucao', 'finalizado']
-          && data.data is string && data.data.size() <= 50
-          && data.createdAt == request.time;
-      }
-
-      // Admins have full access to facilitate migration and management
-      allow create, update, delete: if isAdmin();
-
-      // Customer Create: matches schema and ID must match path
-      allow create: if isValidId(pedidoId) && isValidPedido(incoming()) && incoming().id == pedidoId;
-
-      // Public can get if they know the ID (Tracker)
-      allow get: if true;
-
-      // Only Admin can list all orders
-      allow list: if isAdmin();
-
-      // Customer Update: Only allowed to upload comprovante and change status to 'pagamento_enviado'
-      allow update: if (
-        incoming().status == 'pagamento_enviado' &&
-        incoming().comprovanteUrl is string && incoming().comprovanteUrl.size() <= 2000000 && // 2MB limit for base64
-        incoming().diff(existing()).affectedKeys().hasOnly(['status', 'comprovanteUrl']) &&
-        // Immutability Check
-        incoming().id == existing().id &&
-        incoming().nome == existing().nome &&
-        incoming().email == existing().email &&
-        incoming().telefone == existing().telefone &&
-        incoming().endereco == existing().endereco &&
-        incoming().placas == existing().placas &&
-        incoming().servico == existing().servico &&
-        incoming().pagamento == existing().pagamento &&
-        incoming().data == existing().data &&
-        incoming().createdAt == existing().createdAt
-      );
-
-      // Only Admin can delete
-      allow delete: if isAdmin();
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow update, delete: if request.auth != null;
     }
 
-    // ---------------------------------------------------------
-    // 3. MAIL (NOTIFICATIONS)
-    // ---------------------------------------------------------
-    match /mail/{mailId} {
-      function isValidMail(data) {
-        return data.keys().hasAll(['to', 'message', 'createdAt'])
-          && data.to is string && data.to.size() <= 100
-          && data.message is map
-          && data.message.keys().hasAll(['subject', 'html'])
-          && data.message.subject is string && data.message.subject.size() <= 200
-          && data.message.html is string && data.message.html.size() <= 2000
-          && data.createdAt == request.time;
-      }
-
-      // Only Admin should trigger emails (or if it's a backend trigger, but here the client does it)
-      allow create: if isAdmin() && isValidMail(incoming());
-      
-      // No read access for mail logs to public/customers
-      allow read: if isAdmin();
+    match /avaliacoes/{avaliacaoId} {
+      allow read: if true;
+      allow create: if true;
     }
+
+    match /admins/{adminId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /mail/{document} {
+      allow read, write: if request.auth != null;
+    }
+
   }
+
 }

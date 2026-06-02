@@ -2,5 +2,7 @@
   "name": "Remix: SUNEX",
   "description": "Sistema de gerenciamento e solicitação de serviços de limpeza de placas solares.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
