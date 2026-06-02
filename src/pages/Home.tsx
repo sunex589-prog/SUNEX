@@ -51,13 +51,6 @@ export default function Home() {
               <span className="text-[10px] md:text-xs font-bold tracking-wider uppercase text-sunex-muted block">Sustentável</span>
             </div>
           </div>
-
-          <div className="hidden lg:flex items-center gap-3 text-xs font-bold tracking-wider uppercase text-sunex-muted bg-black/30 p-4 rounded-xl border border-white/5 w-fit backdrop-blur-sm">
-            <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.8)] relative">
-              <div className="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-75"></div>
-            </div>
-            Sistemas Firebase Online • Monitoramento em Tempo Real
-          </div>
         </section>
 
         {/* Right Why SUNEX Column */}
