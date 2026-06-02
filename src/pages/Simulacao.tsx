@@ -65,27 +65,27 @@ export default function Simulacao() {
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] -z-10 pointer-events-none opacity-30 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle, rgba(255, 195, 0, 0.05) 0%, rgba(255, 195, 0, 0) 70%)' }} />
 
       {/* Main Container */}
-      <div className="max-w-[1300px] mx-auto px-6 py-16">
+      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 py-8 sm:py-16">
         
         {/* Header Section */}
-        <div className="text-center mb-16 animate-in fade-in duration-700">
-          <div className="inline-flex items-center gap-2 mb-3 text-xs font-black tracking-[4px] uppercase text-sunex-accent bg-sunex-accent/10 border border-sunex-accent/25 px-4 py-1.5 rounded-full">
+        <div className="text-center mb-8 sm:mb-16 animate-in fade-in duration-700">
+          <div className="inline-flex items-center gap-2 mb-3 text-[10px] sm:text-xs font-black tracking-[2px] sm:tracking-[4px] uppercase text-sunex-accent bg-sunex-accent/10 border border-sunex-accent/25 px-3 sm:px-4 py-1.5 rounded-full">
             <Calculator className="w-3.5 h-3.5 animate-pulse" /> Simulador de Investimento
           </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold uppercase text-white tracking-tight mb-4 mt-2">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase text-white tracking-tight mb-4 mt-2">
             Simulador de <span className="text-transparent bg-clip-text bg-gradient-to-r from-sunex-gold to-sunex-accent">Investimento</span>
           </h1>
-          <p className="text-sunex-muted text-md max-w-2xl mx-auto font-medium">
+          <p className="text-sunex-muted text-sm sm:text-md max-w-2xl mx-auto font-medium leading-relaxed px-2">
             Calcule o valor do serviço em tempo real e entenda o custo sob demanda para a sua usina fotovoltaica.
           </p>
         </div>
-
+ 
         {/* Responsive Grid Split Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 md:gap-12 items-stretch animate-in fade-in duration-900">
           
           {/* LEFT COLUMN: The Calculator Widget */}
-          <div className="glass-panel p-8 md:p-10 border-t border-t-white/10 bg-sunex-card flex flex-col justify-between">
-            <div className="space-y-8">
+          <div className="glass-panel p-5 sm:p-8 md:p-10 border-t border-t-white/10 bg-sunex-card flex flex-col justify-between">
+            <div className="space-y-6 sm:space-y-8">
               
               {/* Form Input: Placas */}
               <div className="group">
@@ -99,15 +99,15 @@ export default function Simulacao() {
                     min="1"
                     value={placas}
                     onChange={handlePlacasChange}
-                    className="input-field text-2xl font-black text-center font-mono py-5 border border-white/10 hover:border-white/20 bg-black/40 focus:border-sunex-accent text-white"
+                    className="input-field text-xl sm:text-2xl font-black text-left font-mono py-4 sm:py-5 pl-5 sm:pl-6 pr-24 border border-white/10 hover:border-white/20 bg-black/40 focus:border-sunex-accent text-white"
                     placeholder="Ex: 12"
                   />
-                  <div className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-bold text-sunex-muted uppercase tracking-widest pointer-events-none">
+                  <div className="absolute right-5 top-1/2 -translate-y-1/2 text-[10px] sm:text-xs font-bold text-sunex-muted uppercase tracking-widest pointer-events-none">
                     Unidades
                   </div>
                 </div>
               </div>
-
+ 
               {/* Plano Selector Radios */}
               <div>
                 <label className="input-label mb-4 text-xs font-bold uppercase tracking-widest text-sunex-muted block">
@@ -121,7 +121,7 @@ export default function Simulacao() {
                     return (
                       <label 
                         key={key}
-                        className={`relative flex flex-col cursor-pointer rounded-xl border p-5 transition-all duration-300 ${
+                        className={`relative flex flex-col cursor-pointer rounded-xl border p-4 sm:p-5 transition-all duration-300 ${
                           isSelected 
                             ? 'border-sunex-accent bg-sunex-accent/5 shadow-[0_5px_30px_rgba(255,122,0,0.15)]'
                             : 'border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/10'
@@ -136,26 +136,26 @@ export default function Simulacao() {
                           className="sr-only" 
                         />
                         
-                        <div className="flex items-center justify-between w-full">
-                          <div className="flex items-center gap-3">
-                            <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${isSelected ? 'border-sunex-accent' : 'border-white/20'}`}>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${isSelected ? 'border-sunex-accent' : 'border-white/20'}`}>
                               {isSelected && <div className="w-2 h-2 rounded-full bg-sunex-accent" />}
                             </div>
-                            <span className={`font-extrabold text-md uppercase tracking-wider ${isSelected ? 'text-sunex-gold' : 'text-white'}`}>
+                            <span className={`font-extrabold text-sm sm:text-md uppercase tracking-wider ${isSelected ? 'text-sunex-gold' : 'text-white'}`}>
                               {key}
                             </span>
                             {key === 'Performance' && (
-                              <span className="text-[9px] bg-sunex-accent/15 text-sunex-gold px-2.5 py-0.5 rounded-full uppercase tracking-widest font-black border border-sunex-accent/20 animate-pulse">
+                              <span className="text-[9px] bg-sunex-accent/15 text-sunex-gold px-2.5 py-0.5 rounded-full uppercase tracking-widest font-black border border-sunex-accent/20 animate-pulse whitespace-nowrap">
                                 Plano Mais Vendido
                               </span>
                             )}
                           </div>
                           
-                          <span className={`font-mono font-black text-md ${isSelected ? 'text-sunex-accent' : 'text-sunex-muted'}`}>
+                          <span className={`font-mono font-black text-sm sm:text-md shrink-0 ${isSelected ? 'text-sunex-accent' : 'text-sunex-muted'}`}>
                             R$ {item.preco.toFixed(2).replace('.', ',')} <span className="text-[10px] uppercase font-sans tracking-widest font-bold">/ placa</span>
                           </span>
                         </div>
-
+ 
                         {/* Extra features reveal drawer on checked */}
                         {isSelected && (
                           <div className="mt-4 pt-4 border-t border-white/5 animate-in fade-in duration-300">
@@ -178,15 +178,15 @@ export default function Simulacao() {
                   })}
                 </div>
               </div>
-
+ 
             </div>
-
+ 
             {/* Price Result Banner */}
-            <div className="pt-8 border-t border-white/5 mt-8 text-center bg-black/40 p-8 rounded-xl border border-white/5">
+            <div className="pt-8 border-t border-white/5 mt-8 text-center bg-black/40 p-5 sm:p-8 rounded-xl border border-white/5">
               <span className="text-sunex-muted text-xs uppercase tracking-widest font-black mb-2 block">
                 Valor Total Estimado
               </span>
-              <div className="text-4xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-sunex-gold to-sunex-accent mb-6 font-mono">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-sunex-gold to-sunex-accent mb-6 font-mono">
                 {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calcularValor)}
               </div>
               
@@ -195,9 +195,9 @@ export default function Simulacao() {
               </Link>
             </div>
           </div>
-
+ 
           {/* RIGHT COLUMN: Benefícios Side Card */}
-          <div className="glass-panel p-8 md:p-10 border-t border-t-white/10 bg-sunex-card flex flex-col justify-between">
+          <div className="glass-panel p-5 sm:p-8 md:p-10 border-t border-t-white/10 bg-sunex-card flex flex-col justify-between">
             <div>
               <div className="inline-flex items-center gap-2 mb-4 text-[10px] font-black tracking-[3px] uppercase text-[#FFC300] bg-sunex-gold/5 px-3 py-1 rounded-full border border-sunex-gold/20">
                 <Sparkles className="w-3 h-3" /> Benefícios Reais
