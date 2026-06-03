@@ -6,23 +6,25 @@ const PLANOS = {
   Essencial: {
     preco: 18.0,
     descricao: "Ideal para quem quer manter o sistema funcionando bem com foco em custo-benefício.",
-    inclui: ["Uma limpeza completa"]
+    inclui: ["Limpeza completa"]
   },
   Performance: {
     preco: 15.0,
     descricao: "O plano mais equilibrado e mais vendido para usinas ou residências de alta performance.",
     inclui: [
-      "Uma limpeza completa",
+      "Limpeza completa",
       "Inspeção técnica detalhada dos painéis",
-      "Inspeção elétrica preventiva estrutural"
+      "Inspeção elétrica preventiva estrutural",
+      "Blindagem das placas"
     ]
   },
   Elite: {
     preco: 13.0,
     descricao: "O máximo cuidado e acompanhamento constante para geração ininterrupta de grande porte.",
     inclui: [
-      "Limpeza profissional mensal programada",
-      "Avaliação técnica termográfica",
+      "Limpeza completa mais blindagem",
+      "Inspeção técnica termográfica",
+      "Inspeção elétrica preventiva",
       "Monitoramento ativo de perdas térmicas",
       "Análise aprofundada de perdas de eficiência",
       "Relatório técnico simplificado mensal"

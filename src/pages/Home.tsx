@@ -127,7 +127,7 @@ export default function Home() {
                 <ul className="space-y-3.5">
                   <li className="flex items-center gap-3 text-sm text-sunex-muted font-medium">
                     <Check className="w-4 h-4 text-sunex-gold shrink-0" />
-                    <span>Uma limpeza completa</span>
+                    <span>Limpeza completa</span>
                   </li>
                 </ul>
               </div>
@@ -164,7 +164,7 @@ export default function Home() {
                 <ul className="space-y-3.5">
                   <li className="flex items-center gap-3 text-sm text-[#eee] font-medium">
                     <Check className="w-4 h-4 text-sunex-accent shrink-0 font-bold" />
-                    <span>Uma limpeza completa</span>
+                    <span>Limpeza completa</span>
                   </li>
                   <li className="flex items-center gap-3 text-sm text-[#eee] font-medium">
                     <Check className="w-4 h-4 text-sunex-accent shrink-0 font-bold" />
@@ -173,6 +173,10 @@ export default function Home() {
                   <li className="flex items-center gap-3 text-sm text-[#eee] font-medium">
                     <Check className="w-4 h-4 text-sunex-accent shrink-0 font-bold" />
                     <span>Inspeção elétrica preventiva</span>
+                  </li>
+                  <li className="flex items-center gap-3 text-sm text-[#eee] font-medium">
+                    <Check className="w-4 h-4 text-sunex-accent shrink-0 font-bold" />
+                    <span>Blindagem das placas</span>
                   </li>
                 </ul>
               </div>
@@ -204,11 +208,15 @@ export default function Home() {
                 <ul className="space-y-3.5">
                   <li className="flex items-center gap-3 text-sm text-sunex-muted font-medium">
                     <Check className="w-4 h-4 text-sunex-gold shrink-0" />
-                    <span>Limpeza profissional mensal</span>
+                    <span>Limpeza completa mais blindagem</span>
                   </li>
                   <li className="flex items-center gap-3 text-sm text-sunex-muted font-medium">
                     <Check className="w-4 h-4 text-sunex-gold shrink-0" />
-                    <span>Avaliação técnica</span>
+                    <span>Inspeção técnica</span>
+                  </li>
+                  <li className="flex items-center gap-3 text-sm text-sunex-muted font-medium">
+                    <Check className="w-4 h-4 text-sunex-gold shrink-0" />
+                    <span>Inspeção elétrica preventiva</span>
                   </li>
                   <li className="flex items-center gap-3 text-sm text-sunex-muted font-medium">
                     <Check className="w-4 h-4 text-sunex-gold shrink-0" />
