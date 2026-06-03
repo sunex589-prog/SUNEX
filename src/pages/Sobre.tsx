@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Sparkles, Activity, Cpu, Droplet, Users, CheckSquare, Award, Check, HeartHandshake, Eye, ShieldCheck } from 'lucide-react';
+import { Shield, Sparkles, Activity, Cpu, Droplet, Users, CheckSquare, Award, Check, HeartHandshake, Eye, ShieldCheck, Phone, Instagram } from 'lucide-react';
 
 export default function Sobre() {
   return (
@@ -184,6 +184,65 @@ export default function Sobre() {
               </p>
             </div>
 
+          </div>
+        </section>
+
+        {/* SECTION 3: Suporte Técnico e Contato */}
+        <section className="mt-16 text-center animate-in fade-in duration-1000">
+          <p className="text-sunex-muted text-sm sm:text-base font-medium mb-6 max-w-3xl mx-auto px-4 leading-relaxed">
+            Ficou com duvidas ou quer conhecer melhor? Entre em contato com nosso suporte técnico abaixo:
+          </p>
+          
+          {/* Tarja Laranja com Número em Destaque */}
+          <div className="w-full bg-sunex-accent py-6 px-6 sm:px-10 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_10px_30px_rgba(255,122,0,0.25)] border border-white/10">
+            <div className="text-center sm:text-left">
+              <span className="text-[10px] font-black tracking-[3px] text-black/80 uppercase block mb-1">Canais de Atendimento</span>
+              <h3 className="text-lg sm:text-xl font-black text-white uppercase tracking-wider">Suporte Técnico SUNEX</h3>
+            </div>
+            <a 
+              href="https://wa.me/message/O3MLL6TJGTDFE1" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-3 bg-[#111111] hover:bg-black text-white hover:text-sunex-gold font-mono font-black py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 text-lg sm:text-2xl shadow-xl hover:scale-105 active:scale-95 border border-white/5 shrink-0"
+            >
+              <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-sunex-accent animate-bounce" />
+              84 92168-3473
+            </a>
+          </div>
+        </section>
+
+        {/* SECTION 4: Instagram Follow */}
+        <section className="mt-16 text-center animate-in fade-in duration-1000">
+          <p className="text-sunex-muted text-sm sm:text-base font-medium mb-6 max-w-3xl mx-auto px-4 leading-relaxed">
+            Siga-nos também no Instagram para acompanhar nossos bastidores, dicas de eficiência e atualizações diárias:
+          </p>
+          
+          {/* Tarja Laranja com Perfil e Destaque */}
+          <div className="w-full bg-sunex-accent py-6 px-6 sm:px-10 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_10px_30px_rgba(255,122,0,0.25)] border border-white/10">
+            <div className="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row w-full sm:w-auto">
+              <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-black shadow-lg shrink-0 border border-white/10">
+                <Instagram className="w-7 h-7 text-black" />
+              </div>
+              <div className="flex-1">
+                <span className="text-[10px] font-black tracking-[3px] text-black/80 uppercase block mb-1">Nosso Instagram</span>
+                <a 
+                  href="https://www.instagram.com/sunex.performance?igsh=dHY3bDcxZnhsNnJl" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xl sm:text-2xl font-black text-white hover:text-black transition-colors uppercase tracking-wider"
+                >
+                  @SUNEX.PERFOMANCE
+                </a>
+              </div>
+            </div>
+            <a 
+              href="https://www.instagram.com/sunex.performance?igsh=dHY3bDcxZnhsNnJl" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-2.5 bg-[#111111] hover:bg-black text-white hover:text-sunex-gold font-sans font-black py-4 px-6 rounded-xl transition-all duration-300 text-sm uppercase tracking-wider shadow-xl hover:scale-105 active:scale-95 shrink-0"
+            >
+              Seguir Perfil
+            </a>
           </div>
         </section>
 
